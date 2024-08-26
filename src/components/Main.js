@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CodeContext } from "../context/CodeContext";
 import "./Main.css";
 
 const Main = () => {
   const navigate = useNavigate();
+  const { code, setCode } = useContext(CodeContext);
 
   const handleOpenClick = () => {
     navigate("/notes");
@@ -20,7 +22,12 @@ const Main = () => {
             No registration. No installation. Just pick a code and get to work.
           </p>
           <div className="code-input">
-            <input type="text" placeholder="Enter your code here..." />
+            <input
+              type="text"
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              placeholder="Enter your code here..."
+            />
             <button onClick={handleOpenClick} className="btn-animated">
               Open
             </button>
